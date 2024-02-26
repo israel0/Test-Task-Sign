@@ -8,8 +8,8 @@ use Exception;
 
 class AuthController extends Controller
 {
-     public function userRegisterPage() {
-            return view('auth.register');
+     public function loginPage() {
+            return view('welcome');
      }
 
      public function redirectToGoogle() {

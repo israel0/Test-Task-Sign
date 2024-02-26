@@ -14,12 +14,10 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::get('/', function () {
-     return view('welcome');
-});
+Route::get('/', [AuthController::class , 'loginPage'])->name("login");
 
 Route::get('auth/google', [AuthController::class , 'redirectToGoogle'])->name("google");
-Route::get('auth/google/callback',[ AuthController::class , 'handleGoogleCallback']);
+Route::get('google/callback',[ AuthController::class , 'handleGoogleCallback']);
 
 
 
