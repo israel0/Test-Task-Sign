@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Laravel\Socialite\Facades\Socialite;
-use Illuminate\Support\Str;
+use Exception;
+
 
 class AuthController extends Controller
 {
@@ -25,7 +26,7 @@ class AuthController extends Controller
              }
 
              $data['email'] = $user->email;
-             $data['otp'] = $this->generateNewOtp();
+             $data['otp'] = $this->generateNumericOTP(6);
 
              return view('home', $data)->with('success', 'Authentication successful.');
          } catch (Exception $e) {
@@ -33,9 +34,9 @@ class AuthController extends Controller
          }
      }
 
-     public function generateNewOtp()
-     {
-         return Str::random(6);
-     }
+     function generateNumericOTP($length) {
+        $digits = '0123456789';
+        return substr(str_shuffle($digits), 0, $length);
+    }
  }
 
